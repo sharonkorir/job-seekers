@@ -130,7 +130,7 @@ WSGI_APPLICATION = 'jobseekers.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'jobseekers',
+        'NAME': 'seekers',
         'USER': 'sharon',
         'PASSWORD': '12345678',
 
@@ -189,3 +189,5 @@ cloudinary.config(
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+AUTH_USER_MODEL = 'seekers.User'
