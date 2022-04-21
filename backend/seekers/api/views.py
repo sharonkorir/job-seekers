@@ -2,7 +2,22 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view 
 from seekers.models import Comment, Pitch, Profile, Resume, Rate, RATE_CHOICES
 from .serializers import RateSerializer, PitchSerializer, ProfileSerializer, CommentSerializer, ResumeSerializer
-from django.http import JsonResponse
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        # ...
+
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 #show all endpoints
 @api_view(['GET'])
