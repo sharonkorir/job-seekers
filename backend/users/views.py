@@ -2,10 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import redirect, render
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-
-
 from seekers.models import User
-from .forms import UserRegistrationForm,UserUpdateForm
+from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
