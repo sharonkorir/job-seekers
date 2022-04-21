@@ -2,6 +2,15 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view 
 from seekers.models import Comment, Pitch, Profile, Resume, Rate, RATE_CHOICES
 from .serializers import RateSerializer, PitchSerializer, ProfileSerializer, CommentSerializer, ResumeSerializer
+from django.http import JsonResponse
+
+#show all endpoints
+def get_routes(request):
+    routes = [
+        '/api/token',
+        '/api/token/refresh',
+    ]
+    return JsonResponse(routes, safe=False)
 
 
 @api_view(['GET'])
