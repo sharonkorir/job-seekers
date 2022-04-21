@@ -5,12 +5,13 @@ from .serializers import RateSerializer, PitchSerializer, ProfileSerializer, Com
 from django.http import JsonResponse
 
 #show all endpoints
+@api_view(['GET'])
 def get_routes(request):
     routes = [
         '/api/token',
         '/api/token/refresh',
     ]
-    return JsonResponse(routes, safe=False)
+    return Response(routes)
 
 
 @api_view(['GET'])
