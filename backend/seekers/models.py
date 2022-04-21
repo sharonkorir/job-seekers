@@ -37,6 +37,9 @@ class Resume(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        ordering = ['-date_posted']
+
     def __str__(self):
         return str (self.profile.name)
 
@@ -85,3 +88,50 @@ class Rate(models.Model):
 
     def __str__(self):
         return str(self.cv)
+
+    @classmethod
+    def get_rate_count(cls,pk):
+        rates = cls.objects.filter(project=pk)
+        count = len(rates)
+        return count
+
+    @classmethod
+    def find_sum(cls,pk):
+        rates = cls.objects.filter(project=pk)
+        print('test rate', rates)
+        c_list = []
+        p_list = []
+        f_list = []
+        
+    
+        for rate in rates:
+            print('test rate len' ,len(rates))
+            if len(rates) > 0:
+                c_list.append(rate.conciseness)
+                p_list.append(rate.professionalism)
+                f_list.append(rate.flow)
+            
+            else:
+                c_list.append(0)
+                p_list.append(0)
+                f_list.append(0)
+
+            c_sum = sum(c_list)
+            p_sum = sum(p_list)
+            f_sum = sum(f_list)
+            count = len(c_list)
+
+            conciseness = c_sum/count
+            professionalism = p_sum/count
+            flow = f_sum/count
+
+            conciseness = int(round(conciseness))
+            professionalism = int(round(professionalism))
+            flow = int(round(flow))
+
+            average_score = (conciseness + professionalism + flow)/3
+
+            average_score = int(round(average_score))
+
+            print(conciseness, professionalism, flow, average_score)
+            return conciseness, professionalism, flow, average_score
