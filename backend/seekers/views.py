@@ -52,7 +52,7 @@ def cv_details(request, pk):
 
         }
 
-    return render(request, 'resumes/cv_detail.html', context)
+    return render(request, 'resumes/cv_details.html', context)
 
 @login_required()
 def upload_cv(request):
@@ -68,7 +68,7 @@ def upload_cv(request):
     return render(request, 'resumes/upload_cv.html', {'form':form})
 
 @login_required()
-def rate_cv(request, pk):
+def rate_cv(request,pk):
     resume = Resume.objects.get(id=pk)
     user = request.user
 
@@ -82,7 +82,7 @@ def rate_cv(request, pk):
             rate.save()
             print('test form save' ,rate)
             
-            return HttpResponseRedirect(reverse('cv_details', args=pk))
+            return HttpResponseRedirect(reverse('cv_details', args=(pk,)))
             
     else:
         form = RateForm()

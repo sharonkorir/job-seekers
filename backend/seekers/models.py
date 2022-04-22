@@ -93,13 +93,13 @@ class Rate(models.Model):
 
     @classmethod
     def get_rate_count(cls,pk):
-        rates = cls.objects.filter(project=pk)
+        rates = cls.objects.filter(cv=pk)
         count = len(rates)
         return count
 
     @classmethod
     def find_sum(cls,pk):
-        rates = cls.objects.filter(project=pk)
+        rates = cls.objects.filter(cv=pk)
         print('test rate', rates)
         c_list = []
         p_list = []

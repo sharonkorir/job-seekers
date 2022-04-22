@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+  {{ block.super }}
+
+  <div class="container" style="padding-top: 100px;">
+    <div class="card-panel hoverable white" id="card2">
+      {% for resume in resume %}
+      <!--votes-->
+      <div class="row center-align" style="display: flex; justify-content: center; align-items: center;">
+        <div class="circle2">
+          <p><strong>Design:</strong></p>
+          <p><strong>{{design}}</strong></p> 
+        </div>
+        <div class="circle2">
+          <p><strong>Content:</strong></p>
+          <p><strong>{{content}}</strong></p> 
+        </div>
+        <div class="circle2">
+          <p><strong>Usability:</strong> </p>
+          <p><strong>{{usability}}</strong></p> 
+        </div>
+        <div class="circle2">
+          <p><strong>Average:</strong> </p>
+          <p><strong>{{average}}</strong></p> 
+        </div>
+      </div> 
+      <!--image-->
+      <div class="card-image" style="height: 450px; padding: 20px;">
+          <img src="{{resume.cv.url}}" class="responsive-img" alt="Image" id="img">
+      </div>
+      <!--details-->
+      <div style="padding-left: 20px; padding-right: 20px;">
+        <a href="{{resume.link}}" class="teal-text"><h5><b>{{resume.title|upper}}</b></h5></a> by: <a href="{" class="orange-text">{{resume.profile.user.username}}</a></p>
+        <p> {{resume.pitch}}</p>
+        <p class="grey-text">{{resume.date_posted|timesince}} ago</p>
+      </div>
+      <!--vote-->
+      <div class="container-fluid">
+        <button type="submit" class=" col s12 waves-effect waves-light btn orange lighten-2"><a href="{% url 'rate_cv' resume.pk %}" class="white-text">rate resume</a></button>
+      </div>
+    </div>
+    {% endfor %}
+{% endblock %}
+

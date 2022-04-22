@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  {{block.super}}
+  <div class="container" style="padding-top: 150px;">
+    <div class="row">
+      <form class="col s12 z-depth-3 white" method="POST" action="" role="form">
+        <h5>Rate <span class="orange-text">{{resume.title}}</span></h5>
+        {% csrf_token %}
+        <div class="row" style="display: flex;">
+          <div class="input-field col s12 browser-default">
+            Concise: {{form.conciseness}}
+          </div>
+        </div>
+        <div class="row" style="display: flex;">
+          <div class="input-field col s12">
+            Professional: {{form.professionalism}}
+          </div>
+        </div>
+        <div class="row" style="display: flex;">
+          <div class="input-field col s12">
+            Flow/structure: {{form.flow}}
+          </div>
+        </div>
+        <div class="row center-align">
+          <button type="submit" name="action" class=" waves-effect waves-light btn teal darken-4">Vote</button>
+        </div>
+      </form>
+  </div>
+{% endblock %}
