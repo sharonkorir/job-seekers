@@ -16,7 +16,7 @@ def register(request):
       if form.is_valid():
         form.save()
         #username = form.cleaned_data.get('username')
-        username = form.cleaned_data['username']
+        username = form.cleaned_data['name']
         email = form.cleaned_data['email']
         #succesful log in message
         messages.success(request, f'Your Jobseekers account had been created successfully')

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  {{ block.super }}
+  <div class="container">
+    <div class="row" style="padding-top: 50px;">
+      <div class="col s12 m2 l3"></div>
+      <div class="col s12 m8 l6" id="login">
+        <h5 class="nyumba-kumi">Upload your cv</h5>
+        
+        <form action="" method = 'POST' class="input-field col s12">
+          {% csrf_token %}
+          
+          <!--render form fields as paragraph-->
+          {{ b_form|crispy }}
+          <button type="submit" class="col s12 waves-effect waves-light btn">Upload</button>
+        
+        </form>
+      </div>
+      <div class="col s12 m2 l3"></div>
+    </div> 
+    
+  </div>
+  <!--footer-->
+  <div class="section center" style="color: grey; position: fixed; bottom: 0%; width: 100%;">
+    <p>2022 jobseekers</p>
+  </div>
+          
+{% endblock %}
+

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+  {{block.super}}
+  <div class="container-fluid">
+    <div class="row white" id="centered">
+      <h6>You have been logged out successfully</h6>
+      <div class="row"></div>
+      <button class="col s12 waves-effect waves-light btn white">
+        <a href="{% url 'login' %}" class="white-text">Log in</a>
+      </button>
+    </div>
+  </div>
+  <!--footer-->
+  <div class="section center" style="color: #8c9395;">
+    <p>2022 jobseekrs.hub</p>
+  </div>
+{% endblock %}

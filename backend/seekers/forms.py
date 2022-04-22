@@ -2,11 +2,12 @@ from django import forms
 from django.forms import ModelForm
 from .models import User, Resume, Rate, Pitch, Comment, RATE_CHOICES
 
-class ResumeForm(ModelForm):
+class ResumeForm(forms.Form):
+    cv = forms.FileField()
 
     class Meta:
         model = Resume
-        exclude = ('profile', 'date_posted')
+        fields = ['cv']
 
 class RateForm(forms.ModelForm):
     conciseness = forms.ChoiceField(

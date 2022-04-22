@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
+    'crispy_forms',
+    'crispy_forms_materialize'
 
     
 ]
@@ -191,3 +193,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'seekers.User'
+
+#redirect on log in
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'
+
+CRISPY_TEMPLATE_PACK = 'materialize_css_forms'

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+  <div class="container">
+    <div class="row" style="padding-top: 100px;">
+      <div class="col s12 m3 l3"></div>
+      <div class="col s12 m6 l6" id="login">
+
+        <form action="" method = 'POST' class="input-field col s12 z-depth-3 white" style="padding: 40px;">
+          <h5 class="purple-text center-align">jobseekrs</h5>
+          {% csrf_token %}
+          
+          <!--render form fields as paragraph-->
+          {{ form|crispy }}
+          <button type="submit" class="col s12 waves-effect waves-light btn">Login</button>
+          <div class="row"></div>
+          <div class="row center-align">
+      
+            <p>Don't have an account? <a href="{% url 'register' %}"><strong class="purple-text">Sign up</strong></a></p>
+          
+          </div>
+        </form>
+      </div>
+      <div class="col s12 m3 l3"></div>
+    </div> 
+    
+  </div>
+  <!--footer-->
+<div class="section center" style="color: grey; position: fixed; bottom: 0%; width: 100%;">
+  <p>2022 jobseekrs.hub</p>
+</div>
+
+          
+{% endblock %}
