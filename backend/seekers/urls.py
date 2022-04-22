@@ -11,5 +11,5 @@ urlpatterns=[
   path('rate_cv/<int:pk>', views.rate_cv, name = 'rate_cv'),
   # path('pitch/', views.pitch, name='pitch'),
   # path('pitch/<str:pk>/', views.pitch_details, name='pitch_details'),
-  path('pitch/<str:pk>/comment', views.comment, name = 'comment'),
+  path('resume/<str:pk>/comment', views.comment, name = 'comment'),
 ]

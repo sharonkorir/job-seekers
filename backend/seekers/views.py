@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
@@ -30,8 +30,10 @@ def profile(request):
     return render(request, 'profile.html', {'user':user, 'resume':resume})
 
 def cv_details(request, pk):
-    resume = Resume.objects.filter(pk=pk)
+    resume = Resume.objects.filter(id=pk)
     rates = Rate.get_rate_count(pk)
+    comments = Comment.objects.filter(resume=pk)
+  
     if rates > 0:
         
         averages = Rate.find_sum(pk)
@@ -44,14 +46,15 @@ def cv_details(request, pk):
           'conciseness': conciseness,
           'professionalism': professionalism,
           'flow': flow,
-          'average': average,
+          'average': average, 
+          'form': CommentForm()
         }
     else:
         context = {
           'resume':resume,
-
+          'form': CommentForm()
         }
-
+   
     return render(request, 'resumes/cv_details.html', context)
 
 @login_required()

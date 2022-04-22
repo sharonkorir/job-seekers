@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
   {{ block.super }}
 
@@ -8,16 +9,16 @@
       <!--votes-->
       <div class="row center-align" style="display: flex; justify-content: center; align-items: center;">
         <div class="circle2">
-          <p><strong>Design:</strong></p>
-          <p><strong>{{design}}</strong></p> 
+          <p><strong>Concise:</strong></p>
+          <p><strong>{{conciseness}}</strong></p> 
         </div>
         <div class="circle2">
-          <p><strong>Content:</strong></p>
-          <p><strong>{{content}}</strong></p> 
+          <p><strong>Professional:</strong></p>
+          <p><strong>{{professionalism}}</strong></p> 
         </div>
         <div class="circle2">
-          <p><strong>Usability:</strong> </p>
-          <p><strong>{{usability}}</strong></p> 
+          <p><strong>Flow:</strong> </p>
+          <p><strong>{{flow}}</strong></p> 
         </div>
         <div class="circle2">
           <p><strong>Average:</strong> </p>
@@ -33,9 +34,35 @@
         <a href="{{resume.link}}" class="teal-text"><h5><b>{{resume.title|upper}}</b></h5></a> by: <a href="{" class="orange-text">{{resume.profile.user.username}}</a></p>
         <p> {{resume.pitch}}</p>
         <p class="grey-text">{{resume.date_posted|timesince}} ago</p>
+        <a class="" href="{% url 'comment' resume.id %}">
+          <!-- <i class="material-icons purple-text">chat_bubble_outline</i> -->
+          Leave a comment...
+        </a>
+        
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <form action="" method = 'POST' class="input-field col s12 z-depth-3 white" style="padding: 40px;">
+              <h5 class="purple-text center-align">how can I improve my elevator pitch or CV?</h5>
+              {% csrf_token %}
+              
+              <!--render form fields as paragraph-->
+              {{ form|crispy }}
+              <button type="submit" class="col s12 waves-effect waves-light btn">comment</button>
+              <div class="row"></div>
+              <div class="row center-align">
+          
+                <p>Do you want feedback on your CV? <a href="{% url 'upload_cv' %}"><strong class="purple-text">Upload</strong></a></p>
+              
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">esc</a>
+          </div>
+        </div>
       </div>
       <!--vote-->
-      <div class="container-fluid">
+      <div class="container center-align">
         <button type="submit" class=" col s12 waves-effect waves-light btn orange lighten-2"><a href="{% url 'rate_cv' resume.pk %}" class="white-text">rate resume</a></button>
       </div>
     </div>

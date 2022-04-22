@@ -14,6 +14,7 @@ from pathlib import Path
 import cloudinary, cloudinary.api, cloudinary.uploader
 import os
 from datetime import timedelta
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-=s(=)w_+c+m=0+onb$s9-h8y$q8^ayvl440(m)z18w_k+4xu(e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jobseekrs.herokuapp.com']
 
 
 # Application definition
@@ -133,12 +134,15 @@ WSGI_APPLICATION = 'jobseekers.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'jobseekers',
-        'USER': 'sharon',
-        'PASSWORD': '12345678',
+        'NAME': 'df81t5g0m0tj4q',
+        'USER': 'etukwxplguqsys',
+        'PASSWORD': '86e50fa44a7f8f1385db4756ea72797032d161b203d152cba04af55ea8b058dd',
+        'PORT': '5432',
+        'HOST': 'ec2-99-80-170-190.eu-west-1.compute.amazonaws.com'
 
     }
 }
+
 
 
 # Password validation
@@ -182,6 +186,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+django_heroku.settings(locals())
 
 cloudinary.config( 
   cloud_name = "dq2ipkrpz", 

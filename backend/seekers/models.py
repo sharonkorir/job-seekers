@@ -58,15 +58,15 @@ class Resume(models.Model):
 
 class Comment(models.Model):
     profile = models.ForeignKey(User,on_delete=models.CASCADE)
-    resume = models.ForeignKey(Resume,on_delete=models.CASCADE)
-    comment = models.CharField(max_length=150)
+    resume = models.ManyToManyField(Resume)
+    comment = models.CharField(max_length=150, null=True)
     date_posted = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-date_posted']
 
     def __str__(self):
-        return self.comment
+        return self.resume
 
 RATE_CHOICES = [
   (1, '1'),

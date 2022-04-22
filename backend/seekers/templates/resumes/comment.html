@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  {{ block.super }}
+  <div class="container">
+    <div class="row" style="padding-top: 50px;">
+      <div class="col s12 m2 l3"></div>
+      <div class="col s12 m8 l6" id="login">
+        <form action="" method = 'POST' class="input-field col s12 z-depth-3 white" style="padding: 40px;">
+          <h5 class="purple-text center-align">how can I improve my elevator pitch or CV?</h5>
+          {% csrf_token %}
+          
+          <!--render form fields as paragraph-->
+          {{ form|crispy }}
+          <button type="submit" class="col s12 waves-effect waves-light btn">comment</button>
+          <div class="row"></div>
+          <div class="row center-align">
+      
+            <p>Do you want feedback on your CV? <a href="{% url 'upload_cv' %}"><strong class="purple-text">Upload</strong></a></p>
+          
+          </div>
+        </form>
+      </div>
+      <div class="col s12 m2 l3"></div>
+    </div> 
+    
+  </div>
+  <!--footer-->
+  <div class="section center" style="color: #8c9395;">
+    <p>2022 jobseekers</p>
+  </div>
+          
+{% endblock %}
+
