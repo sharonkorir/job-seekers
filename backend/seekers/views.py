@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from .models import Comment, User, Rate, Resume
-from .forms import ResumeForm, RateForm, CommentForm
+from .forms import UploadResumeForm, RateForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -56,14 +56,14 @@ def cv_details(request, pk):
 
 @login_required()
 def upload_cv(request):
-    form = ResumeForm()
+    form = UploadResumeForm()
     if request.method == 'POST':
-        form = ResumeForm(request.POST, request.FILES)
+        form = UploadResumeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('index')
     else:
-        form = ResumeForm()
+        form = UploadResumeForm()
 
     return render(request, 'resumes/upload_cv.html', {'form':form})
 

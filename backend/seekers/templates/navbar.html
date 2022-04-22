@@ -8,7 +8,6 @@
         <li><a href="/"><i class="material-icons white-text">home</i></a></li>
         {% if user.is_authenticated %}
 
-          <li><a href="{% url 'pitch' %}" class="white-text"><i class="material-icons white-text">view_list</i>pitches</a></li>
           <li> <a href="{% url 'upload_cv' %}" class="white-text"><i class="material-icons white-text">vertical_align_top</i>Upload cv</a></li>
           <li><a href="{% url 'profile' %}"><i class="material-icons white-text">account_circle</i></a></li>
           <li><a href="{% url 'logout' %}"><i class="material-icons white-text">exit_to_app</i></a></li>
@@ -25,7 +24,7 @@
 <ul class="sidenav" id="mobile-demo">
   <li><a href="/"><i class="material-icons white-text">home</i></a></li>
       {% if user.is_authenticated %}
-        <li><a href="{% url 'pitch' %}" class="white-text"><i class="material-icons white-text">view_list</i>pitches</a></li>
+  
         <li> <a href="{% url 'upload_cv' %}" class="white-text"><i class="material-icons white-text">vertical_align_top</i>Upload cv</a></li>
         <li><a href="{% url 'profile' %}" class="white-text"><i class="material-icons white-text">account_circle</i>view profile</a></li>
         <li><a href="{% url 'logout' %}" class="white-text"><i class="material-icons white-text">exit_to_app</i>logout</a></li>

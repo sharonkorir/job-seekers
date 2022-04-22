@@ -8,11 +8,11 @@
       <div class="col s12 m8 l6" id="login">
         <h5 class="nyumba-kumi">Upload your cv</h5>
         
-        <form action="" method = 'POST' class="input-field col s12">
+        <form action="" method = 'POST' class="input-field col s12" enctype="multipart/form-data">
           {% csrf_token %}
           
           <!--render form fields as paragraph-->
-          {{ b_form|crispy }}
+          {{ form|crispy }}
           <button type="submit" class="col s12 waves-effect waves-light btn">Upload</button>
         
         </form>

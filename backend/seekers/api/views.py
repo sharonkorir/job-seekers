@@ -21,29 +21,29 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
-class RegisterView(APIView):
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+# class RegisterView(APIView):
+#     def post(self, request):
+#         serializer = UserSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data)
 
-class LoginView(APIView):
-    def post(self, request):
-        email = request.data['email']
-        password = request.data['password']
+# class LoginView(APIView):
+#     def post(self, request):
+#         email = request.data['email']
+#         password = request.data['password']
 
-        user = User.objects.filter(email=email).first()
+#         user = User.objects.filter(email=email).first()
 
-        if user is None:
-            raise AuthenticationFailed('User not found!')
+#         if user is None:
+#             raise AuthenticationFailed('User not found!')
 
-        if not user.check_password(password):
-           raise AuthenticationFailed('Incorrect password')
+#         if not user.check_password(password):
+#            raise AuthenticationFailed('Incorrect password')
 
-        return Response({
-          "message": "success"
-        })
+#         return Response({
+#           "message": "success"
+#         })
 
 #show all endpoints
 @api_view(['GET'])

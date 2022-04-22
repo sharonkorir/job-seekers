@@ -10,11 +10,13 @@
           <div class="card-panel hoverable white" id="card">
             <div class="card-image">
               <a href="{% url 'cv_details' resume.pk %}">
-                <img src="{{resume.cv.url}}" class="responsive-img" alt="Image" id="img">
+                <img src="{{resume.cv.url}}" id="img" >
               </a>
             </div>
             <div class="card-content center-align orange lighten-2">
-              <p>{{resume.profile.name}}</p>
+              <p>{{resume.profile}}</p>
+              <p>{{resume.pitch}}</p>
+              <p>{{resume.cv.url}}</p>
               <p>{{resume.date_posted|timesince}} ago</p>
 
             </div>

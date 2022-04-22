@@ -33,7 +33,8 @@ class Resume(models.Model):
     '''
     CV model acts as blueprint for all project instances
     '''
-    cv = models.FileField()
+    # cv = models.FileField(upload_to='media')
+    cv = CloudinaryField('image')
     date_posted = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
     pitch = models.TextField(max_length=250)
@@ -42,7 +43,7 @@ class Resume(models.Model):
         ordering = ['-date_posted']
 
     def __str__(self):
-        return str (self.profile.name)
+        return str (self.pitch)
 
 # class Pitch(models.Model):
 #     profile = models.ForeignKey(User,on_delete=models.CASCADE)

@@ -2,12 +2,14 @@ from django import forms
 from django.forms import ModelForm
 from .models import User, Resume, Rate, Comment, RATE_CHOICES
 
-class ResumeForm(forms.Form):
-    cv = forms.FileField()
-
+class UploadResumeForm(forms.ModelForm):
+    
+    cv = forms.FileField(widget=forms.FileInput(attrs={'class':'file-field input-field col s12', 'placeholder':'Upload your CV'}))
+    pitch = forms.CharField(widget=forms.TextInput(attrs={'class':'input-field col s12','placeholder':'submit your elevator pitch'}))
+  
     class Meta:
         model = Resume
-        fields = ['cv', 'pitch']
+        fields = ('cv', 'pitch')
 
 class RateForm(forms.ModelForm):
     conciseness = forms.ChoiceField(
