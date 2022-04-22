@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from seekers.models import Comment, Pitch, User, Resume, Rate, RATE_CHOICES
+from seekers.models import Comment, User, Resume, Rate, RATE_CHOICES
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,7 +32,7 @@ class CommentSerializer(serializers.ModelSerializer):
         model = Comment
         fields = '__all__'
 
-class PitchSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Pitch
-        fields = '__all__'
+# class PitchSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Pitch
+#         fields = '__all__'

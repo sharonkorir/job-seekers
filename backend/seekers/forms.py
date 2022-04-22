@@ -1,13 +1,13 @@
 from django import forms
 from django.forms import ModelForm
-from .models import User, Resume, Rate, Pitch, Comment, RATE_CHOICES
+from .models import User, Resume, Rate, Comment, RATE_CHOICES
 
 class ResumeForm(forms.Form):
     cv = forms.FileField()
 
     class Meta:
         model = Resume
-        fields = ['cv']
+        fields = ['cv', 'pitch']
 
 class RateForm(forms.ModelForm):
     conciseness = forms.ChoiceField(
@@ -29,11 +29,11 @@ class RateForm(forms.ModelForm):
         model = Rate
         fields = ('conciseness', 'professionalism', 'flow')
 
-class PitchForm(ModelForm):
+# class PitchForm(ModelForm):
 
-    class Meta:
-        model = Pitch
-        exclude = ('profile', 'date_posted')
+#     class Meta:
+#         model = Pitch
+#         exclude = ('profile', 'date_posted')
 
 class CommentForm(ModelForm):
 

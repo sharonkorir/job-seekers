@@ -36,6 +36,7 @@ class Resume(models.Model):
     cv = models.FileField()
     date_posted = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    pitch = models.TextField(max_length=250)
 
     class Meta:
         ordering = ['-date_posted']
@@ -43,20 +44,20 @@ class Resume(models.Model):
     def __str__(self):
         return str (self.profile.name)
 
-class Pitch(models.Model):
-    profile = models.ForeignKey(User,on_delete=models.CASCADE)
-    pitch = models.TextField(max_length=250)
-    date_posted = models.DateTimeField(auto_now_add=True)
+# class Pitch(models.Model):
+#     profile = models.ForeignKey(User,on_delete=models.CASCADE)
+#     pitch = models.TextField(max_length=250)
+#     date_posted = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        ordering = ['-date_posted']
+#     class Meta:
+#         ordering = ['-date_posted']
 
-    def __str__(self):
-        return self.pitch
+#     def __str__(self):
+#         return self.pitch
 
 class Comment(models.Model):
     profile = models.ForeignKey(User,on_delete=models.CASCADE)
-    pitch = models.ForeignKey(Pitch,on_delete=models.CASCADE)
+    resume = models.ForeignKey(Resume,on_delete=models.CASCADE)
     comment = models.CharField(max_length=150)
     date_posted = models.DateTimeField(auto_now_add=True)
 

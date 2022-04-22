@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view 
-from seekers.models import Comment, Pitch, User, Resume, Rate, RATE_CHOICES
-from .serializers import RateSerializer, PitchSerializer, UserSerializer, CommentSerializer, ResumeSerializer
+from seekers.models import Comment, User, Resume, Rate, RATE_CHOICES
+from .serializers import RateSerializer, CommentSerializer, ResumeSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
@@ -68,18 +68,18 @@ def add_resume(request):
         serializer.save()
     return Response(serializer.data)
 
-@api_view(['GET'])
-def get_pitch(request):
-    pitch = Pitch.objects.all()
-    serializer = PitchSerializer(pitch, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def get_pitch(request):
+#     pitch = Pitch.objects.all()
+#     serializer = PitchSerializer(pitch, many=True)
+#     return Response(serializer.data)
 
-@api_view(['POST'])
-def add_pitch(request):
-    serializer = PitchSerializer(data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+# @api_view(['POST'])
+# def add_pitch(request):
+#     serializer = PitchSerializer(data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#     return Response(serializer.data)
 
 @api_view(['GET'])
 def get_comment(request, pk):

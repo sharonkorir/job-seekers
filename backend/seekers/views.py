@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
-from .models import Comment, User, Rate, Pitch, Resume
-from .forms import ResumeForm, RateForm, PitchForm, CommentForm
+from .models import Comment, User, Rate, Resume
+from .forms import ResumeForm, RateForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -16,18 +16,18 @@ def index(request):
   }
   return render(request,'index.html', context)
 
-def pitch(request):
-  pitches = Pitch.objects.all()
-  context = {
-    'pitches':pitches,
-  }
-  return render(request,'pitch/pitches.html', context)
+# def pitch(request):
+#   pitches = Pitch.objects.all()
+#   context = {
+#     'pitches':pitches,
+#   }
+#   return render(request,'pitch/pitches.html', context)
 
 def profile(request):
     user = request.user
     resume = Resume.objects.filter(profile=user)
-    pitch = Pitch.objects.filter(profile=user)
-    return render(request, 'profile.html', {'user':user, 'resume':resume, 'pitch':pitch})
+    # pitch = Pitch.objects.filter(profile=user)
+    return render(request, 'profile.html', {'user':user, 'resume':resume})
 
 def cv_details(request, pk):
     resume = Resume.objects.filter(pk=pk)
@@ -95,33 +95,33 @@ def rate_cv(request, pk):
     print(user, resume)
     return render(request, 'resumes/rate_cv.html', context)
 
-@login_required()
-def submit_pitch(request):
-    form = PitchForm()
-    if request.method == 'POST':
-        form = PitchForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('pitch')
-    else:
-        form = PitchForm()
+# @login_required()
+# def submit_pitch(request):
+#     form = PitchForm()
+#     if request.method == 'POST':
+#         form = PitchForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('pitch')
+#     else:
+#         form = PitchForm()
 
-    return render(request, 'pitch/submit_pitch.html', {'form':form})
+#     return render(request, 'pitch/submit_pitch.html', {'form':form})
 
-def pitch_details(request, pk):
-    pitch = Pitch.objects.filter(pk=pk)
-    comments = Comment.objects.filter(pitch=pitch)
+# def pitch_details(request, pk):
+#     pitch = Pitch.objects.filter(pk=pk)
+#     comments = Comment.objects.filter(pitch=pitch)
     
-    context = {
-      'pitch':pitch,
-      'comments':comments,
-    }
+#     context = {
+#       'pitch':pitch,
+#       'comments':comments,
+#     }
 
-    return render(request, 'pitch/pitch_detail.html', context)
+#     return render(request, 'pitch/pitch_detail.html', context)
 
 @login_required()
 def comment(request, pk):
-    pitch = Pitch.objects.get(id=pk)
+    resume = Resume.objects.get(id=pk)
     user = request.user
 
     if request.method == 'POST':
@@ -130,11 +130,11 @@ def comment(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.profile = user
-            comment.pitch = pitch
+            comment.pitch = resume
             comment.save()
             print('test form save' ,comment)
             
-            return HttpResponseRedirect(reverse('pitch_details', args=pk))
+            return HttpResponseRedirect(reverse('cv_details', args=pk))
             
     else:
         form = CommentForm()
@@ -142,9 +142,9 @@ def comment(request, pk):
 
     context = {
       'form':form,
-      'pitch':pitch
+      'resume':resume
     }
-    print(user, pitch)
-    return render(request, 'pitch/comment.html', context)
+    print(user, resume)
+    return render(request, 'resumes/comment.html', context)
 
 

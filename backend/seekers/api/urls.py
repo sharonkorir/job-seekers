@@ -13,8 +13,8 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('resume/', views.get_resume),
     path('add_resume/', views.add_resume),
-    path('pitch/', views.get_pitch),
-    path('add_pitch/', views.add_pitch),
+    # path('pitch/', views.get_pitch),
+    # path('add_pitch/', views.add_pitch),
     path('register', RegisterView.as_view()),
     path('login', LoginView.as_view()),
     
